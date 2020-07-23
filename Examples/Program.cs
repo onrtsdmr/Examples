@@ -9,14 +9,22 @@ namespace Examples
     {
         static void Main(string[] args)
         {
-            var func = new Func<string, bool>(Find);
-            var names = new List<string>{"H", "E", "Hello"};
-            foreach (var item in names.Where(func))
-            {
-                Console.WriteLine(item);
-            }
         }
+    }
 
-        private static bool Find(string arg) => arg == "Hello";
+    internal class Customer
+    {
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+    }
+
+    internal class CustomerValidator
+    {
+        public static bool NameValidator(string name) => string.IsNullOrWhiteSpace(name) ? false : true;
+    }
+
+    internal class EfCustomerRepository
+    {
+        // Db saved.
     }
 }
