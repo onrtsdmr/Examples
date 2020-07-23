@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Examples.Extension;
 
 namespace Examples
@@ -8,12 +9,14 @@ namespace Examples
     {
         static void Main(string[] args)
         {
-            var predicate = new Predicate<string>(Find);
-            var names = new List<string>{"H","E","Hello"};
-
-            Console.WriteLine(names.Find(predicate));
+            var func = new Func<string, bool>(Find);
+            var names = new List<string>{"H", "E", "Hello"};
+            foreach (var item in names.Where(func))
+            {
+                Console.WriteLine(item);
+            }
         }
 
-        private static bool Find(string obj) => obj.ToLower() == "hello";
+        private static bool Find(string arg) => arg == "Hello";
     }
 }
