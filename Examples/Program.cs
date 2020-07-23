@@ -7,8 +7,10 @@ namespace Examples
 {
     class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
+            ICustomerRepository customerRepository = new EfCustomerRepository();
+            customerRepository.CreateCustomer();
         }
     }
 
@@ -23,8 +25,18 @@ namespace Examples
         public static bool NameValidator(string name) => string.IsNullOrWhiteSpace(name) ? false : true;
     }
 
-    internal class EfCustomerRepository
+    internal interface ICustomerRepository
     {
-        // Db saved.
+        void CreateCustomer();
+    }
+
+    internal class EfCustomerRepository : ICustomerRepository
+    {
+        void ICustomerRepository.CreateCustomer() => "EF Customer added.".Print();
+    }
+
+    internal class DpCustomerRepository : ICustomerRepository
+    {
+        void ICustomerRepository.CreateCustomer() => "DP Customer added.".Print();
     }
 }
