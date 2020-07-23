@@ -10,8 +10,10 @@ namespace Examples
         {
             // "Hello World!".Print(); Extension Method
             var dDelegate = new MyDelegate(Sum);
+            dDelegate += Multiply;
             dDelegate.Invoke(2,3);
         }
         public static void Sum(int numberOne, int numberTwo) => Console.WriteLine(numberOne + numberTwo);
+        public static void Multiply(int numberOne, int numberTwo) => Console.WriteLine(numberOne * numberTwo);
     }
 }
