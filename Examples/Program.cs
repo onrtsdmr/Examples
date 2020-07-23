@@ -8,16 +8,12 @@ namespace Examples
     {
         static void Main(string[] args)
         {
-            // "Hello World!".Print(); Extension Method
-            
-            var numbers = new List<int>{0,1,2,3,4,5,6,7,8,9};
-            
-            var action = new Action<int>(GetNumber);
+            var predicate = new Predicate<string>(Find);
+            var names = new List<string>{"H","E","Hello"};
 
-            numbers.ForEach(action);
-            
+            Console.WriteLine(names.Find(predicate));
         }
 
-        private static void GetNumber(int obj) => Console.WriteLine(obj.ToString());
+        private static bool Find(string obj) => obj.ToLower() == "hello";
     }
 }
