@@ -1,19 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using Examples.Extension;
 
 namespace Examples
 {
-    delegate void MyDelegate(int numberOne, int numberTwo);
     class Program
     {
         static void Main(string[] args)
         {
             // "Hello World!".Print(); Extension Method
-            var dDelegate = new MyDelegate(Sum);
-            dDelegate += Multiply;
-            dDelegate.Invoke(2,3);
+            
+            var numbers = new List<int>{0,1,2,3,4,5,6,7,8,9};
+            
+            var action = new Action<int>(GetNumber);
+
+            numbers.ForEach(action);
+            
         }
-        public static void Sum(int numberOne, int numberTwo) => Console.WriteLine(numberOne + numberTwo);
-        public static void Multiply(int numberOne, int numberTwo) => Console.WriteLine(numberOne * numberTwo);
+
+        private static void GetNumber(int obj) => Console.WriteLine(obj.ToString());
     }
 }
